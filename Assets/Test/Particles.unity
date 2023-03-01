@@ -158,6 +158,7 @@ MonoBehaviour:
   _height: 1080
   _preset: 0
   _frameRate: 60
+  _folderPath: videos
 --- !u!20 &271630894
 Camera:
   m_ObjectHideFlags: 0
@@ -308,6 +309,7 @@ MonoBehaviour:
   _height: 1080
   _preset: 0
   _frameRate: 60
+  _folderPath: videos
 --- !u!1 &401510807
 GameObject:
   m_ObjectHideFlags: 0
