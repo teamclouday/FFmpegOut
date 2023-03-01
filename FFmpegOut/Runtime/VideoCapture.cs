@@ -72,6 +72,11 @@ namespace FFmpegOut
         {
             if (_session == null)
             {
+                if (!string.IsNullOrEmpty(_folderPath))
+                {
+                    Directory.CreateDirectory(_folderPath);
+                }
+
                 _session = FFmpegSession.Create(
                     Path.Combine(string.IsNullOrEmpty(_folderPath) ? "." : _folderPath, gameObject.name),
                     _width, _height, _frameRate, preset
