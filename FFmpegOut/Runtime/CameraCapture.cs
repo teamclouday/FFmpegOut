@@ -52,14 +52,6 @@ namespace FFmpegOut
             set { _folderPath = value; }
         }
 
-        string _fileIdentity = "";
-
-        public string FileIdentity
-        {
-            get { return _fileIdentity; }
-            set { _fileIdentity = value; }
-        }
-
         #endregion
 
         #region Private members
@@ -175,7 +167,7 @@ namespace FFmpegOut
 
                 // Start an FFmpeg session.
                 _session = FFmpegSession.Create(
-                    Path.Combine(string.IsNullOrEmpty(_folderPath) ? "." : _folderPath, _fileIdentity + gameObject.name),
+                    Path.Combine(string.IsNullOrEmpty(_folderPath) ? "." : _folderPath, gameObject.name),
                     camera.targetTexture.width,
                     camera.targetTexture.height,
                     _frameRate, preset
