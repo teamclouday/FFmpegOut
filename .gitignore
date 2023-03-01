@@ -17,9 +17,10 @@ Desktop.ini
 /Assets/StreamingAssets/FFmpegOut/macOS/ffmpeg
 /Assets/StreamingAssets/FFmpegOut/Linux/ffmpeg
 
-/*.mov
-/*.mp4
-/*.webm
+*.mov
+*.mp4
+*.webm
+*.gif
 
 *.csproj
 *.sln

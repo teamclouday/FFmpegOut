@@ -17,7 +17,8 @@ namespace FFmpegOut
         VP9Default,
         Hap,
         HapAlpha,
-        HapQ
+        HapQ,
+        GIF
     }
 
     static public class FFmpegPresetExtensions
@@ -39,6 +40,7 @@ namespace FFmpegOut
                 case FFmpegPreset.Hap: return "HAP (QuickTime)";
                 case FFmpegPreset.HapAlpha: return "HAP Alpha (QuickTime)";
                 case FFmpegPreset.HapQ: return "HAP Q (QuickTime)";
+                case FFmpegPreset.GIF: return "GIF";
                 default: break;
             }
             return null;
@@ -61,7 +63,9 @@ namespace FFmpegOut
                 case FFmpegPreset.Hap:
                 case FFmpegPreset.HapQ:
                 case FFmpegPreset.HapAlpha: return ".mov";
-                default: break;
+                case FFmpegPreset.GIF: return ".gif";
+                default:
+                    break;
             }
             return null;
         }
@@ -83,6 +87,7 @@ namespace FFmpegOut
                 case FFmpegPreset.Hap: return "-c:v hap";
                 case FFmpegPreset.HapAlpha: return "-c:v hap -format hap_alpha";
                 case FFmpegPreset.HapQ: return "-c:v hap -format hap_q";
+                case FFmpegPreset.GIF: return "-f gif -loop 0";
                 default: break;
             }
             return null;
