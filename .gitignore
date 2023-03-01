@@ -20,3 +20,10 @@ Desktop.ini
 /*.mov
 /*.mp4
 /*.webm
+
+*.csproj
+*.sln
+*.unitypackage
+.vsconfig
+UserSettings/*
+.vs

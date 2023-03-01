@@ -1,0 +1,14 @@
+{
+    "name": "com.ffmpegout",
+    "version": "1.0.5",
+    "unity": "2018.3",
+    "displayName": "FFmpegOut",
+    "description": "Video capture plugin for Unity with FFmpeg.",
+    "license": "MIT",
+    "keywords": ["video", "ffmpeg"],
+    "dependencies": {
+        "com.unity.modules.particlesystem": "1.0.0",
+        "com.unity.modules.ui": "1.0.0",
+        "com.unity.modules.wind": "1.0.0"
+    }
+}
