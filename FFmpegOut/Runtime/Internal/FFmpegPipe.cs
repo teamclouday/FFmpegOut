@@ -119,15 +119,15 @@ namespace FFmpegOut
         Thread _copyThread;
         Thread _pipeThread;
 
-        AutoResetEvent _copyPing = new AutoResetEvent(false);
-        AutoResetEvent _copyPong = new AutoResetEvent(false);
-        AutoResetEvent _pipePing = new AutoResetEvent(false);
-        AutoResetEvent _pipePong = new AutoResetEvent(false);
+        readonly AutoResetEvent _copyPing = new(false);
+        readonly AutoResetEvent _copyPong = new(false);
+        readonly AutoResetEvent _pipePing = new(false);
+        readonly AutoResetEvent _pipePong = new(false);
         bool _terminate;
 
-        Queue<NativeArray<byte>> _copyQueue = new Queue<NativeArray<byte>>();
-        Queue<byte[]> _pipeQueue = new Queue<byte[]>();
-        Queue<byte[]> _freeBuffer = new Queue<byte[]>();
+        Queue<NativeArray<byte>> _copyQueue = new();
+        Queue<byte[]> _pipeQueue = new();
+        Queue<byte[]> _freeBuffer = new();
 
         public static string ExecutablePath
         {

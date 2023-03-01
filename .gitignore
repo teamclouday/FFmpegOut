@@ -27,3 +27,5 @@ Desktop.ini
 .vsconfig
 UserSettings/*
 .vs
+
+obj

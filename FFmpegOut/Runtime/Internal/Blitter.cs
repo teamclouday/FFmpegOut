@@ -10,13 +10,14 @@ namespace FFmpegOut
     {
         #region Factory method
 
-        static System.Type[] _initialComponents =
-            { typeof(Camera), typeof(Blitter) };
+        static readonly System.Type[] _initialComponents = { typeof(Camera), typeof(Blitter) };
 
         public static GameObject CreateInstance(Camera source)
         {
-            var go = new GameObject("Blitter", _initialComponents);
-            go.hideFlags = HideFlags.HideInHierarchy;
+            var go = new GameObject("Blitter", _initialComponents)
+            {
+                hideFlags = HideFlags.HideInHierarchy
+            };
 
             var camera = go.GetComponent<Camera>();
             camera.cullingMask = 1 << UILayer;
@@ -49,12 +50,10 @@ namespace FFmpegOut
             );
         }
 
-#if UNITY_2019_2_OR_NEWER
         void BeginCameraRendering(ScriptableRenderContext context, Camera camera)
         {
             PreCull(camera);
         }
-#endif
 
         #endregion
 
@@ -65,10 +64,12 @@ namespace FFmpegOut
             if (_mesh == null)
             {
                 // Index-only triangle mesh
-                _mesh = new Mesh();
-                _mesh.vertices = new Vector3[3];
-                _mesh.triangles = new int [] { 0, 1, 2 };
-                _mesh.bounds = new Bounds(Vector3.zero, Vector3.one);
+                _mesh = new Mesh
+                {
+                    vertices = new Vector3[3],
+                    triangles = new int[] { 0, 1, 2 },
+                    bounds = new Bounds(Vector3.zero, Vector3.one)
+                };
                 _mesh.UploadMeshData(true);
 
                 // Blitter shader material
@@ -77,11 +78,7 @@ namespace FFmpegOut
                 _material.SetTexture("_MainTex", _sourceTexture);
 
                 // Register the camera render callback.
-#if UNITY_2019_2_OR_NEWER
                 RenderPipelineManager.beginCameraRendering += BeginCameraRendering; // SRP
-#else
-                UnityEngine.Experimental.Rendering.RenderPipeline.beginCameraRendering += PreCull; // SRP
-#endif
                 Camera.onPreCull += PreCull; // Legacy
             }
         }
@@ -91,11 +88,7 @@ namespace FFmpegOut
             if (_mesh != null)
             {
                 // Unregister the camera render callback.
-#if UNITY_2019_2_OR_NEWER
                 RenderPipelineManager.beginCameraRendering -= BeginCameraRendering; // SRP
-#else
-                UnityEngine.Experimental.Rendering.RenderPipeline.beginCameraRendering -= PreCull; // SRP
-#endif
                 Camera.onPreCull -= PreCull; // Legacy
 
                 // Destroy temporary objects.

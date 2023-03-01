@@ -127,8 +127,7 @@ namespace FFmpegOut
 
         #region Frame readback queue
 
-        List<AsyncGPUReadbackRequest> _readbackQueue =
-            new List<AsyncGPUReadbackRequest>(4);
+        readonly List<AsyncGPUReadbackRequest> _readbackQueue = new(4);
 
         void QueueFrame(Texture source)
         {

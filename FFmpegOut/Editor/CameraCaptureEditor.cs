@@ -24,7 +24,8 @@ namespace FFmpegOut
         // - No target texture is specified in the camera.
         bool ShouldShowFormatOptions
         {
-            get {
+            get
+            {
                 if (targets.Length > 1) return true;
                 var camera = ((Component)target).GetComponent<Camera>();
                 return camera.targetTexture == null;
@@ -38,7 +39,7 @@ namespace FFmpegOut
             _preset = serializedObject.FindProperty("_preset");
             _frameRate = serializedObject.FindProperty("_frameRate");
 
-            var presets = FFmpegPreset.GetValues(typeof(FFmpegPreset));
+            var presets = System.Enum.GetValues(typeof(FFmpegPreset));
             _presetLabels = presets.Cast<FFmpegPreset>().
                 Select(p => new GUIContent(p.GetDisplayName())).ToArray();
             _presetOptions = presets.Cast<int>().ToArray();

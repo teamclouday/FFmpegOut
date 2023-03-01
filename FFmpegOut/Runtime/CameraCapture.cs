@@ -13,28 +13,32 @@ namespace FFmpegOut
 
         [SerializeField] int _width = 1920;
 
-        public int width {
+        public int width
+        {
             get { return _width; }
             set { _width = value; }
         }
 
         [SerializeField] int _height = 1080;
 
-        public int height {
+        public int height
+        {
             get { return _height; }
             set { _height = value; }
         }
 
         [SerializeField] FFmpegPreset _preset;
 
-        public FFmpegPreset preset {
+        public FFmpegPreset preset
+        {
             get { return _preset; }
             set { _preset = value; }
         }
 
         [SerializeField] float _frameRate = 60;
 
-        public float frameRate {
+        public float frameRate
+        {
             get { return _frameRate; }
             set { _frameRate = value; }
         }
@@ -65,7 +69,8 @@ namespace FFmpegOut
         float _startTime;
         int _frameDropCount;
 
-        float FrameTime {
+        float FrameTime
+        {
             get { return _startTime + (_frameCount - 0.5f) / _frameRate; }
         }
 
@@ -119,7 +124,7 @@ namespace FFmpegOut
         IEnumerator Start()
         {
             // Sync with FFmpeg pipe thread at the end of every frame.
-            for (var eof = new WaitForEndOfFrame();;)
+            for (var eof = new WaitForEndOfFrame(); ;)
             {
                 yield return eof;
                 _session?.CompletePushFrames();
@@ -138,8 +143,10 @@ namespace FFmpegOut
                 // object to keep frames presented on the screen.
                 if (camera.targetTexture == null)
                 {
-                    _tempRT = new RenderTexture(_width, _height, 24, GetTargetFormat(camera)); 
-                    _tempRT.antiAliasing = GetAntiAliasingLevel(camera);
+                    _tempRT = new RenderTexture(_width, _height, 24, GetTargetFormat(camera))
+                    {
+                        antiAliasing = GetAntiAliasingLevel(camera)
+                    };
                     camera.targetTexture = _tempRT;
                     _blitter = Blitter.CreateInstance(camera);
                 }
